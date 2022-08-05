@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     
     private Animator _animator;
     private Rigidbody2D _rigidbody;
+    private string _bounce = "Bounce";
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.TryGetComponent(out Platform platform))
         {
-            _animator.Play("Bounce");
+            _animator.Play(_bounce);
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }
     }
@@ -39,8 +40,7 @@ public class Player : MonoBehaviour
         {
             Vector3 mousePosition = Input.mousePosition;
             Vector3 mouseScreenToWorld = Camera.main.ScreenToWorldPoint(mousePosition);
-            Debug.Log(mouseScreenToWorld.x);
-            
+
             if (mouseScreenToWorld.x >= 0)
             {
                 MoveLeft();
