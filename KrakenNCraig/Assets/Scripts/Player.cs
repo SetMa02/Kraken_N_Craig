@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private Animator _animator;
     private Rigidbody2D _rigidbody;
     private string _bounce = "Bounce";
+    private bool _isJump = true;
 
     private void Start()
     {
@@ -22,10 +23,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.TryGetComponent(out Platform platform))
+        if (col.gameObject.TryGetComponent(out Platform platform) && _isJump == true)
         {
             _animator.Play(_bounce);
             _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            _isJump = false;
         }
     }
 
@@ -49,6 +51,11 @@ public class Player : MonoBehaviour
             {
                 MoveRight();
             }
+        }
+
+        if (_rigidbody.velocity.y < 0.5 && _isJump == false)
+        {
+            _isJump = true;
         }
     }
 

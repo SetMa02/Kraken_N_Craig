@@ -524,7 +524,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameSpace: {fileID: 519420028}
-  _speed: 1
+  _reachLine: {fileID: 1032178888}
+  _speed: 8
+  _boostPoint: 10
+  _player: {fileID: 968178053}
 --- !u!1001 &1616684539
 PrefabInstance:
   m_ObjectHideFlags: 0
