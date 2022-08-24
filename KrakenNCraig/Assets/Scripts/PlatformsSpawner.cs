@@ -14,10 +14,18 @@ public class PlatformsSpawner : MonoBehaviour
     [SerializeField] private GameObject _rightBorder;
     [SerializeField] private GameObject _conteiner;
     [SerializeField] private DeadLine _deadLine;
-    [SerializeField] private PlayerScore _currentScore;
-    [SerializeField] private float _startDelay;
     [SerializeField] private int _platformPool;
-    private List<Platform> _platforms;
+    private List<Platform> _platforms = new List<Platform>();
+    
+    
+    public void SpawnPlatform()
+    {
+        Vector3 platformPosition = new Vector3(Random.Range(_leftBorder.transform.position.x +1, _rightBorder.transform.position.x) -1, _spawnLine.transform.position.y, 0);
+        _platforms[0].transform.position = platformPosition;
+        _platforms[0].transform.SetParent(_conteiner.transform);
+        _platforms[0].gameObject.SetActive(true);
+        _platforms.RemoveAt(0);
+    }
     
     private void OnEnable()
     {
@@ -40,36 +48,24 @@ public class PlatformsSpawner : MonoBehaviour
         PoolInit();
     }
 
-    private void Update()
-    {
-        
-    }
-
     private void PoolInit()
     {
         for (int i = 0; i < _platformPool; i++)
         {
             GameObject platformObject = Instantiate(_platform.gameObject, _spawnLine.transform.position, Quaternion.identity);
+            platformObject.transform.SetParent(_spawnLine.transform);
             Platform platform = platformObject.GetComponent<Platform>();
             _platforms.Add(platform);
             platformObject.SetActive(false);
-        }        
+        }
     }
-
-    private void SpawnPlatform()
-    {
-        Vector3 platformPosition = new Vector3(Random.Range(_leftBorder.transform.position.x, _rightBorder.transform.position.x), _spawnLine.transform.position.y, 0);
-        _platforms[0].transform.position = platformPosition;
-        _platforms[0].transform.parent = _conteiner.transform;
-        _platforms[0].gameObject.SetActive(true);
-        _platforms.RemoveAt(0);
-    }
-
+    
     private void ReturnPlatform(Platform platform)
     {
         platform.gameObject.SetActive(false);
         platform.transform.parent = _spawnLine.transform;
         platform.transform.position = _spawnLine.transform.position;
         platform.gameObject.SetActive(false);
+        _platforms.Add(platform);
     }
 }

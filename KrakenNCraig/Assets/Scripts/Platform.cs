@@ -11,7 +11,7 @@ public class Platform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.TryGetComponent<Platform>(out Platform platform))
+        if (col.gameObject.TryGetComponent<DeadLine>(out DeadLine deadLine))
         {
             DeadLineReached?.Invoke(this);
         }

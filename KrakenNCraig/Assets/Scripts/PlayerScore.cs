@@ -5,16 +5,34 @@ using UnityEngine.Events;
 
 namespace DefaultNamespace
 {
+    [RequireComponent(typeof(PlatformsSpawner))]
+    [RequireComponent(typeof(Player))]
     public class PlayerScore : MonoBehaviour
     {
-        public event UnityAction StepReached;
+        public  UnityAction StepReached;
         public float Score => _score;
-        
+
         private Player _player;
         private float _currentScore;
         private float _score = 0;
-        
+        private PlatformsSpawner _platformsSpawner;
         private List<int> _difficultyLevel;
+
+        private void Start()
+        {
+            _platformsSpawner = GetComponent<PlatformsSpawner>();
+            _player = GetComponent<Player>();
+        }
+
+        private void OnEnable()
+        {
+            StepReached += CreatePlatform;
+        }
+
+        private void OnDisable()
+        {
+            StepReached -= CreatePlatform;
+        }
 
         private void Update()
         {
@@ -23,6 +41,13 @@ namespace DefaultNamespace
             {
                 _score = _currentScore;
             }
+            
+            
+        }
+
+        private void CreatePlatform()
+        {
+            _platformsSpawner.SpawnPlatform();
         }
     }
 }
