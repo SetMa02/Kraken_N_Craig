@@ -630,7 +630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSpace: {fileID: 519420028}
   _reachLine: {fileID: 1032178888}
-  _speed: 8
+  _speed: 10
   _boostPoint: 10
   _player: {fileID: 968178053}
 --- !u!4 &1108225594 stripped
