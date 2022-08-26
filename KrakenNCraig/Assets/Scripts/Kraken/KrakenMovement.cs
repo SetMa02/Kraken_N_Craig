@@ -16,18 +16,21 @@ public class KrakenMovement : MonoBehaviour
     private void Start()
     {
         transform.position = _deadLine.transform.position;
+        _speed = _startSpeed;
     }
 
+    
     private void Update()
     {
         if (transform.position.y >= _deadLine.transform.position.y)
         {
-            transform.position = Vector3.up * _speed * Time.deltaTime;
+            transform.position += Vector3.up * _speed * Time.deltaTime;
         }
-        else
+        else if(transform.position.y < _deadLine.transform.position.y)
         {
             transform.position = new Vector3(transform.position.x, _deadLine.transform.position.y + 0.5f,
-                transform.position.z);
+                0);
         }
     }
+    
 }
