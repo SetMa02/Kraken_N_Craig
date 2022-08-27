@@ -31,6 +31,14 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.TryGetComponent(out Kraken kraken))
+        {
+            Time.timeScale = 0;
+        }
+    }
+
     private void FixedUpdate()
     {
         Move();

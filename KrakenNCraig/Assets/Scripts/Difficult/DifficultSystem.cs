@@ -15,12 +15,12 @@ namespace DefaultNamespace
         private float _currentStep = 0;
         private void Start()
         {
-            _difficultLevels.Add(new DifficultLevel(100, 2f));
-            _difficultLevels.Add(new DifficultLevel(300, 0.7f));
-            _difficultLevels.Add(new DifficultLevel(600, 1));
-            _difficultLevels.Add(new DifficultLevel(800, 1.5f));
-            _difficultLevels.Add(new DifficultLevel(1000, 2));
-            
+            _difficultLevels.Add(new DifficultLevel(10, 2));
+            _difficultLevels.Add(new DifficultLevel(30, 2.5f));
+            _difficultLevels.Add(new DifficultLevel(50, 3));
+            _difficultLevels.Add(new DifficultLevel(70, 3.5f));
+            _difficultLevels.Add(new DifficultLevel(100, 4));
+
             _playerScore = GetComponent<PlayerScore>();
             _currentDifficult = _difficultLevels[0];
         }
@@ -32,10 +32,11 @@ namespace DefaultNamespace
                 if (_difficultLevels[_difficultLevels.Count-1] != _currentDifficult)
                 {
                     _currentDifficult = _difficultLevels[_difficultLevels.IndexOf(_currentDifficult) + 1];
+                    Debug.Log("Current paltform step = " + _currentDifficult.PlatformsStep);
                 }
             }
             
-            if (_playerScore.Score - _currentStep >= 2)
+            if (_playerScore.Score - _currentStep >= _currentDifficult.PlatformsStep)
             {
                 _playerScore.StepReached?.Invoke();
                 _currentStep = _playerScore.Score;
