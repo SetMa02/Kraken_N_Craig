@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -25,9 +27,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.TryGetComponent(out Platform platform) && _isJump == true)
         {
-            _animator.Play(_bounce);
-            _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-            _isJump = false;
+            Jump(_jumpForce);
         }
     }
 
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.TryGetComponent(out Kraken kraken))
         {
-            Time.timeScale = 0;
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -79,5 +79,12 @@ public class Player : MonoBehaviour
         var transformPosition = gameObject.transform.position;
         transformPosition.x -= _speed * Time.deltaTime;
         gameObject.transform.position = transformPosition;
+    }
+
+    public void Jump(float force)
+    {
+        _animator.Play(_bounce);
+        _rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        _isJump = false;
     }
 }
