@@ -10,6 +10,7 @@ public class ScreenMover : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _boostPoint;
     [SerializeField] private GameObject _player;
+    
     private Vector3 _currentPosition;
     private bool _isUpper = false;
     
@@ -24,6 +25,11 @@ public class ScreenMover : MonoBehaviour
 
     private void FixedUpdate()
     {
+       MoveScreen();
+    }
+
+    private void MoveScreen()
+    { 
         if (_player.transform.position.y > _reachLine.transform.position.y && _isUpper == true) 
         {
             _currentPosition = _gameSpace.transform.position;
@@ -40,15 +46,5 @@ public class ScreenMover : MonoBehaviour
         {
             _isUpper = false;
         }
-    }
-
-    private void MoveScreen()
-    { 
-        
-        /*
-        var transformPosition = _gameSpace.transform.position;
-        transformPosition.y += _speed * Time.deltaTime;
-        _gameSpace.transform.position = transformPosition;
-        */
     }
 }

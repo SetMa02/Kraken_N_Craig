@@ -688,7 +688,7 @@ MonoBehaviour:
   _conteiner: {fileID: 1367266462}
   _platformPool: 15
   _specialPlatformChance: 3
-  _springPlatformChance: 4
+  _springPlatformChance: 2
 --- !u!82 &968178063
 AudioSource:
   m_ObjectHideFlags: 0
@@ -858,8 +858,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSpace: {fileID: 519420028}
   _reachLine: {fileID: 1032178888}
-  _speed: 30
-  _boostPoint: 10
+  _speed: 20
+  _boostPoint: 8
   _player: {fileID: 968178053}
 --- !u!4 &1108225594 stripped
 Transform:

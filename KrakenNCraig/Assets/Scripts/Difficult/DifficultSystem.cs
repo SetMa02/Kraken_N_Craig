@@ -15,11 +15,11 @@ namespace DefaultNamespace
         private float _currentStep = 0;
         private void Start()
         {
-            _difficultLevels.Add(new DifficultLevel(10, 2));
-            _difficultLevels.Add(new DifficultLevel(30, 2.5f));
-            _difficultLevels.Add(new DifficultLevel(50, 3));
-            _difficultLevels.Add(new DifficultLevel(70, 3.5f));
-            _difficultLevels.Add(new DifficultLevel(100, 4));
+            _difficultLevels.Add(new DifficultLevel(100, 2));
+            _difficultLevels.Add(new DifficultLevel(200, 2.5f));
+            _difficultLevels.Add(new DifficultLevel(300, 3));
+            _difficultLevels.Add(new DifficultLevel(400, 3.5f));
+            _difficultLevels.Add(new DifficultLevel(500, 4));
 
             _playerScore = GetComponent<PlayerScore>();
             _currentDifficult = _difficultLevels[0];
