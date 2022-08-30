@@ -11,7 +11,8 @@ public class CrackPlatform : Platform
    {
       if (col.gameObject.TryGetComponent<Player>(out Player player))
       {
-         gameObject.SetActive(false);
+         StartCoroutine(Crack());
+         player.Jump(0);
       }
    }
 
@@ -20,8 +21,7 @@ public class CrackPlatform : Platform
       while (true)
       {
          gameObject.transform.position += Vector3.down * (_speed * Time.deltaTime);
-         return null;
+         yield return null;
       }
-      return null;
    }
 }
