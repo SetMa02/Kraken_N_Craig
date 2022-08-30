@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = System.Random;
 
 namespace DefaultNamespace
 {
@@ -17,6 +18,7 @@ namespace DefaultNamespace
         private float _score = 0;
         private PlatformsSpawner _platformsSpawner;
         private List<int> _difficultyLevel;
+        private Random _random = new Random();
 
         private void Start()
         {
@@ -41,12 +43,27 @@ namespace DefaultNamespace
             {
                 _score = _currentScore;
             }
-            
-            
         }
 
         private void CreatePlatform()
         {
+            int i = _random.Next(0, 10);
+            
+            if (_random.Next(0,10) <= _platformsSpawner.SpecialPlatformChance)
+            {
+                int j = _random.Next(0, 10);
+                
+                if (_random.Next(0,10) <= _platformsSpawner.SpringPlatformChance)
+                {
+                    _platformsSpawner.SpawnSpringPlatform();
+                    Debug.Log("Spring");
+                }
+                else
+                {
+                    _platformsSpawner.SpawnCrackPlatform();
+                    Debug.Log("Crack");
+                }
+            }
             _platformsSpawner.SpawnPlatform();
         }
     }

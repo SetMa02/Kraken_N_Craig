@@ -8,38 +8,103 @@ using Random = UnityEngine.Random;
 
 public class PlatformsSpawner : MonoBehaviour
 {
+    public int SpecialPlatformChance => _specialPlatformChance;
+    public int SpringPlatformChance => _springPlatformChance;
+    
     [SerializeField] private GameObject _platform;
+    [SerializeField] private GameObject _crackedPlatform;
+    [SerializeField] private GameObject _springPlatfrom;
     [SerializeField] private GameObject _spawnLine;
     [SerializeField] private GameObject _leftBorder;
     [SerializeField] private GameObject _rightBorder;
     [SerializeField] private GameObject _conteiner;
-    [SerializeField] private DeadLine _deadLine;
     [SerializeField] private int _platformPool;
+    
+    [SerializeField, Range(0,10)] private int _specialPlatformChance;
+    [SerializeField, Range(0,10)] private int _springPlatformChance;
+    
     private List<Platform> _platforms = new List<Platform>();
-    
-    
-    public void SpawnPlatform()
+    private List<Platform> _crackPlatforms = new List<Platform>();
+    private List<Platform> _springPlatforms = new List<Platform>();
+
+
+    public void SpawnPlatform(Platform platform = null)
     {
+        if (platform == null)
+        {
+            foreach (var pl in _platforms)
+            {
+                if (pl.gameObject.activeSelf == false)
+                {
+                    platform = pl;
+                    break;
+                }
+            }
+        }
+        
         Vector3 platformPosition = new Vector3(Random.Range(_leftBorder.transform.position.x +1, _rightBorder.transform.position.x) -1, _spawnLine.transform.position.y, 0);
-        _platforms[0].transform.position = platformPosition;
-        _platforms[0].transform.SetParent(_conteiner.transform);
-        _platforms[0].gameObject.SetActive(true);
-        _platforms.RemoveAt(0);
+        
+        if (platform != null)
+        {
+            platform.transform.position = platformPosition;
+            platform.transform.SetParent(_conteiner.transform);
+            platform.gameObject.SetActive(true);
+        }
+    }
+
+    public void SpawnCrackPlatform()
+    {
+        foreach (var pl in _crackPlatforms)
+        {
+            if (pl.gameObject.activeSelf == false)
+            {
+                SpawnPlatform(pl);
+                break;
+            }
+        }
+    }
+
+    public void SpawnSpringPlatform()
+    {
+        foreach (var pl in _springPlatforms)
+        {
+            if (pl.gameObject.activeSelf == false)
+            {
+                SpawnPlatform(pl);
+                break;
+            }
+        }
     }
     
     private void OnEnable()
     {
-        foreach (var _platform in _platforms)
+        foreach (var platform in _platforms)
         {
-            _platform.DeadLineReached += ReturnPlatform;
+            platform.DeadLineReached += ReturnPlatform;
+        }
+        foreach (var platform in _crackPlatforms)
+        {
+            platform.DeadLineReached += ReturnPlatform;
+        }
+        foreach (var platform in _springPlatforms)
+        {
+            platform.DeadLineReached += ReturnPlatform;
         }
     }
 
     private void OnDisable()
     {
-        foreach (var _platform in _platforms)
+        foreach (var platform in _platforms)
         {
-            _platform.DeadLineReached -= ReturnPlatform;
+            platform.DeadLineReached -= ReturnPlatform;
+        }
+        foreach (var platform in _crackPlatforms)
+        {
+            platform.DeadLineReached -= ReturnPlatform;
+        }
+        foreach (var platform in _springPlatforms)
+        {
+            platform.DeadLineReached -= ReturnPlatform;
         }
     }
 
@@ -57,6 +122,18 @@ public class PlatformsSpawner : MonoBehaviour
             Platform platform = platformObject.GetComponent<Platform>();
             _platforms.Add(platform);
             platformObject.SetActive(false);
+
+            GameObject crackPlatformObject = Instantiate(_crackedPlatform, _spawnLine.transform.position, Quaternion.identity);
+            crackPlatformObject.transform.SetParent(_spawnLine.transform);
+            Platform crackPlatform = crackPlatformObject.GetComponent<Platform>();    
+            _crackPlatforms.Add(crackPlatform);
+            crackPlatformObject.SetActive(false);
+            
+            GameObject springPlatformObject = Instantiate(_springPlatfrom.gameObject, _spawnLine.transform.position, Quaternion.identity);
+            springPlatformObject.transform.SetParent(_spawnLine.transform);
+            Platform springPlatform = springPlatformObject.GetComponent<Platform>();    
+            _springPlatforms.Add(springPlatform);
+            springPlatformObject.SetActive(false);
         }
     }
     
@@ -65,7 +142,7 @@ public class PlatformsSpawner : MonoBehaviour
         platform.gameObject.SetActive(false);
         platform.transform.parent = _spawnLine.transform;
         platform.transform.position = _spawnLine.transform.position;
-        platform.gameObject.SetActive(false);
-        _platforms.Add(platform);
+     
+ 
     }
 }

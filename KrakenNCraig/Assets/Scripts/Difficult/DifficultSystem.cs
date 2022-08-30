@@ -32,7 +32,6 @@ namespace DefaultNamespace
                 if (_difficultLevels[_difficultLevels.Count-1] != _currentDifficult)
                 {
                     _currentDifficult = _difficultLevels[_difficultLevels.IndexOf(_currentDifficult) + 1];
-                    Debug.Log("Current paltform step = " + _currentDifficult.PlatformsStep);
                 }
             }
             
