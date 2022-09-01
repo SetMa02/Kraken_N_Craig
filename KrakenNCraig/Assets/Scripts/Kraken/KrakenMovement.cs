@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class KrakenMovement : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class KrakenMovement : MonoBehaviour
     
     private void Update()
     {
+        MoveMent();
+    }
+
+    private void MoveMent()
+    {
         if (transform.position.y >= _deadLine.transform.position.y)
         {
             transform.position += Vector3.up * _speed * Time.deltaTime;
@@ -35,9 +41,8 @@ public class KrakenMovement : MonoBehaviour
 
         if (transform.position.y >= _nextMultiplyStep)
         {
-           IncreaseSpeed();
+            IncreaseSpeed();
         }
-        
     }
 
     private void IncreaseSpeed()

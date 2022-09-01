@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -33,20 +34,21 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.TryGetComponent(out Kraken kraken))
+        if (col.gameObject.TryGetComponent(out KrakenMovement kraken))
         {
+            Debug.Log("Loosed!");
             SceneManager.LoadScene(0);
         }
     }
 
     private void FixedUpdate()
     {
-        Move();
+       Move();
     }
 
     private void Move()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 mousePosition = Input.mousePosition;
             Vector3 mouseScreenToWorld = Camera.main.ScreenToWorldPoint(mousePosition);
