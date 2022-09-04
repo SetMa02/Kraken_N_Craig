@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private string _bounce = "Bounce";
     private bool _isJump = true;
+    private float _jumpReadyBorder = 0.5f;
 
     private void Start()
     {
@@ -36,7 +37,6 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.TryGetComponent(out KrakenMovement kraken))
         {
-            Debug.Log("Loosed!");
             SceneManager.LoadScene(0);
         }
     }
@@ -55,33 +55,28 @@ public class Player : MonoBehaviour
 
             if (mouseScreenToWorld.x >= 0)
             {
-                MoveLeft();
+                Movement(_speed);
             }
             else if (mouseScreenToWorld.x < 0)
             {
-                MoveRight();
+                Movement(_speed * -1);
             }
         }
 
-        if (_rigidbody.velocity.y < 0.5 && _isJump == false)
+        if (_rigidbody.velocity.y < _jumpReadyBorder && _isJump == false)
         {
             _isJump = true;
         }
     }
 
-    private void MoveLeft()
+    private void Movement(float moveSpeed)
     {
         var transformPosition = gameObject.transform.position;
-        transformPosition.x += _speed * Time.deltaTime;
+        transformPosition.x += moveSpeed * Time.deltaTime;
         gameObject.transform.position = transformPosition;
     }
 
-    private void MoveRight()
-    {
-        var transformPosition = gameObject.transform.position;
-        transformPosition.x -= _speed * Time.deltaTime;
-        gameObject.transform.position = transformPosition;
-    }
+  
 
     public void Jump(float force)
     {

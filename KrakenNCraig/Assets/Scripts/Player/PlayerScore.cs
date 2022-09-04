@@ -11,16 +11,18 @@ namespace DefaultNamespace
     [RequireComponent(typeof(Player))]
     public class PlayerScore : MonoBehaviour
     {
-        public  UnityAction StepReached;
         public float Score => _score;
 
         [SerializeField]private Text _scoreText;
+        
         private Player _player;
         private float _currentScore;
         private float _score = 0;
         private PlatformsSpawner _platformsSpawner;
         private List<int> _difficultyLevel;
         private Random _random = new Random();
+        
+        public  UnityAction StepReached;
 
         private void Start()
         {

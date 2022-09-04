@@ -8,9 +8,6 @@ using Random = UnityEngine.Random;
 
 public class PlatformsSpawner : MonoBehaviour
 {
-    public int SpecialPlatformChance => _specialPlatformChance;
-    public int SpringPlatformChance => _springPlatformChance;
-    
     [SerializeField] private GameObject _platform;
     [SerializeField] private GameObject _crackedPlatform;
     [SerializeField] private GameObject _springPlatfrom;
@@ -19,13 +16,16 @@ public class PlatformsSpawner : MonoBehaviour
     [SerializeField] private GameObject _rightBorder;
     [SerializeField] private GameObject _conteiner;
     [SerializeField] private int _platformPool;
-    
     [SerializeField, Range(0,10)] private int _specialPlatformChance;
     [SerializeField, Range(0,10)] private int _springPlatformChance;
     
     private List<Platform> _platforms = new List<Platform>();
     private List<Platform> _crackPlatforms = new List<Platform>();
     private List<Platform> _springPlatforms = new List<Platform>();
+    private float _kickOutRange = 1;
+    
+    public int SpecialPlatformChance => _specialPlatformChance;
+    public int SpringPlatformChance => _springPlatformChance;
 
 
     public void SpawnPlatform(Platform platform = null)
@@ -42,7 +42,7 @@ public class PlatformsSpawner : MonoBehaviour
             }
         }
         
-        Vector3 platformPosition = new Vector3(Random.Range(_leftBorder.transform.position.x +1, _rightBorder.transform.position.x) -1, _spawnLine.transform.position.y, 0);
+        Vector3 platformPosition = new Vector3(Random.Range(_leftBorder.transform.position.x +_kickOutRange, _rightBorder.transform.position.x) -_kickOutRange, _spawnLine.transform.position.y, 0);
         
         if (platform != null)
         {
