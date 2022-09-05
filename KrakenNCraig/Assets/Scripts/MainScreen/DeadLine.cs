@@ -3,7 +3,5 @@
 namespace DefaultNamespace
 {
     public class DeadLine : MonoBehaviour
-    {
-        
-    }
+    { }
 }

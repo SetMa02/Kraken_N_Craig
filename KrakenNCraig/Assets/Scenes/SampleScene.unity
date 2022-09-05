@@ -211,7 +211,6 @@ RectTransform:
   m_Children:
   - {fileID: 1347078899}
   - {fileID: 1845360966}
-  - {fileID: 1294446238}
   m_Father: {fileID: 1454528828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -911,8 +910,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSpace: {fileID: 519420028}
   _reachLine: {fileID: 1032178888}
-  _speed: 20
-  _boostPoint: 8
+  _speed: 5
+  _boostPoint: 4
   _player: {fileID: 968178053}
 --- !u!4 &1108225594 stripped
 Transform:
@@ -949,13 +948,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 224430931}
-  m_RootOrder: 2
+  m_Father: {fileID: 1454528828}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.65029633, y: 0.90943754}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 490, y: 910}
-  m_SizeDelta: {x: 339.64963, y: 158.77364}
+  m_AnchoredPosition: {x: 0, y: -0.00012207031}
+  m_SizeDelta: {x: -3.059967, y: -6.049988}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1294446239
 MonoBehaviour:
@@ -1261,6 +1260,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 224430931}
+  - {fileID: 1294446238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

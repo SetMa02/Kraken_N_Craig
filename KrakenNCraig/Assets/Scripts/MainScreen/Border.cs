@@ -13,23 +13,22 @@ public class Border : MonoBehaviour
     {
         if (col.gameObject.TryGetComponent(out Player player))
         {
-            MovePlayer(col.gameObject);
+            if (_otherBorder.transform.position.x > 0)
+            {
+               MovePlayer(col.gameObject, _step * -1);
+            }
+            else if (_otherBorder.transform.position.x < 0)
+            { 
+                MovePlayer(col.gameObject, _step );
+            }
         }
     }
 
-    private void MovePlayer(GameObject player)
+    private void MovePlayer(GameObject player, float moveStep)
     {
-        if (_otherBorder.transform.position.x > 0)
-        {
-            var transformPosition = player.transform.position;
-            transformPosition.x = _otherBorder.transform.position.x - _step;
-            player.transform.position = transformPosition;
-        }
-        else if (_otherBorder.transform.position.x < 0)
-        {
-            var transformPosition = player.transform.position;
-            transformPosition.x = _otherBorder.transform.position.x + _step;
-            player.transform.position = transformPosition;
-        }
+        var transformPosition = player.transform.position;
+        transformPosition.x = _otherBorder.transform.position.x + moveStep;
+        player.transform.position = transformPosition;
+       
     }
 }

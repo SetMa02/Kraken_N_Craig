@@ -11,9 +11,7 @@ namespace DefaultNamespace
     [RequireComponent(typeof(Player))]
     public class PlayerScore : MonoBehaviour
     {
-        public float Score => _score;
-
-        [SerializeField]private Text _scoreText;
+        [SerializeField] private Text _scoreText;
         
         private Player _player;
         private float _currentScore;
@@ -22,8 +20,10 @@ namespace DefaultNamespace
         private List<int> _difficultyLevel;
         private Random _random = new Random();
         
+        public float Score => _score;
+         
         public  UnityAction StepReached;
-
+            
         private void Start()
         {
             _platformsSpawner = GetComponent<PlatformsSpawner>();
@@ -61,12 +61,10 @@ namespace DefaultNamespace
                 if (_random.Next(0,10) <= _platformsSpawner.SpringPlatformChance)
                 {
                     _platformsSpawner.SpawnSpringPlatform();
-                    Debug.Log("Spring");
                 }
                 else
                 {
                     _platformsSpawner.SpawnCrackPlatform();
-                    Debug.Log("Crack");
                 }
             }
             _platformsSpawner.SpawnPlatform();

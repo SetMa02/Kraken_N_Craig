@@ -7,12 +7,12 @@ namespace DefaultNamespace
     [RequireComponent(typeof(PlayerScore))]
     public class DifficultSystem : MonoBehaviour
     {
-        public DifficultLevel CurreDifficultLevel => _currentDifficult;
-        
         private List<DifficultLevel> _difficultLevels = new List<DifficultLevel>() {};
         private PlayerScore _playerScore;
         private DifficultLevel _currentDifficult;
         private float _currentStep = 0;
+        
+        public DifficultLevel CurreDifficultLevel => _currentDifficult;
         private void Start()
         {
             _difficultLevels.Add(new DifficultLevel(100, 2));

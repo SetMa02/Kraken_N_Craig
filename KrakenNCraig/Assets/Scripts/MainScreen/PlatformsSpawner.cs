@@ -26,8 +26,39 @@ public class PlatformsSpawner : MonoBehaviour
     
     public int SpecialPlatformChance => _specialPlatformChance;
     public int SpringPlatformChance => _springPlatformChance;
+    
+    private void OnEnable()
+    {
+        foreach (var platform in _platforms)
+        {
+            platform.DeadLineReached += ReturnPlatform;
+        }
+        foreach (var platform in _crackPlatforms)
+        {
+            platform.DeadLineReached += ReturnPlatform;
+        }
+        foreach (var platform in _springPlatforms)
+        {
+            platform.DeadLineReached += ReturnPlatform;
+        }
+    }
 
-
+    private void OnDisable()
+    {
+        foreach (var platform in _platforms)
+        {
+            platform.DeadLineReached -= ReturnPlatform;
+        }
+        foreach (var platform in _crackPlatforms)
+        {
+            platform.DeadLineReached -= ReturnPlatform;
+        }
+        foreach (var platform in _springPlatforms)
+        {
+            platform.DeadLineReached -= ReturnPlatform;
+        }
+    }
+    
     public void SpawnPlatform(Platform platform = null)
     {
         if (platform == null)
@@ -75,38 +106,6 @@ public class PlatformsSpawner : MonoBehaviour
             }
         }
     }
-    
-    private void OnEnable()
-    {
-        foreach (var platform in _platforms)
-        {
-            platform.DeadLineReached += ReturnPlatform;
-        }
-        foreach (var platform in _crackPlatforms)
-        {
-            platform.DeadLineReached += ReturnPlatform;
-        }
-        foreach (var platform in _springPlatforms)
-        {
-            platform.DeadLineReached += ReturnPlatform;
-        }
-    }
-
-    private void OnDisable()
-    {
-        foreach (var platform in _platforms)
-        {
-            platform.DeadLineReached -= ReturnPlatform;
-        }
-        foreach (var platform in _crackPlatforms)
-        {
-            platform.DeadLineReached -= ReturnPlatform;
-        }
-        foreach (var platform in _springPlatforms)
-        {
-            platform.DeadLineReached -= ReturnPlatform;
-        }
-    }
 
     private void Awake()
     {
@@ -117,24 +116,21 @@ public class PlatformsSpawner : MonoBehaviour
     {
         for (int i = 0; i < _platformPool; i++)
         {
-            GameObject platformObject = Instantiate(_platform.gameObject, _spawnLine.transform.position, Quaternion.identity);
-            platformObject.transform.SetParent(_spawnLine.transform);
-            Platform platform = platformObject.GetComponent<Platform>();
-            _platforms.Add(platform);
-            platformObject.SetActive(false);
+            FillPlatformList(_platform, _platforms);
 
-            GameObject crackPlatformObject = Instantiate(_crackedPlatform, _spawnLine.transform.position, Quaternion.identity);
-            crackPlatformObject.transform.SetParent(_spawnLine.transform);
-            Platform crackPlatform = crackPlatformObject.GetComponent<Platform>();    
-            _crackPlatforms.Add(crackPlatform);
-            crackPlatformObject.SetActive(false);
+            FillPlatformList(_springPlatfrom, _springPlatforms);
             
-            GameObject springPlatformObject = Instantiate(_springPlatfrom.gameObject, _spawnLine.transform.position, Quaternion.identity);
-            springPlatformObject.transform.SetParent(_spawnLine.transform);
-            Platform springPlatform = springPlatformObject.GetComponent<Platform>();    
-            _springPlatforms.Add(springPlatform);
-            springPlatformObject.SetActive(false);
+            FillPlatformList(_crackedPlatform, _crackPlatforms); 
         }
+    }
+
+    private void FillPlatformList(GameObject prefab, List<Platform> platformList)
+    {
+        GameObject platformObject = Instantiate(prefab.gameObject, _spawnLine.transform.position, Quaternion.identity);
+        platformObject.transform.SetParent(_spawnLine.transform);
+        Platform platform = platformObject.GetComponent<Platform>();
+        platformList.Add(platform);
+        platformObject.SetActive(false);
     }
     
     private void ReturnPlatform(Platform platform)
@@ -142,7 +138,5 @@ public class PlatformsSpawner : MonoBehaviour
         platform.gameObject.SetActive(false);
         platform.transform.parent = _spawnLine.transform;
         platform.transform.position = _spawnLine.transform.position;
-     
- 
     }
 }
