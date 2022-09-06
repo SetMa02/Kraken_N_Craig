@@ -73,7 +73,9 @@ public class PlatformPool : MonoBehaviour
             }
         }
         
-        Vector3 platformPosition = new Vector3(Random.Range(_leftBorder.transform.position.x +_kickOutRange, _rightBorder.transform.position.x) -_kickOutRange, _spawnLine.transform.position.y, 0);
+        Vector3 platformPosition = new Vector3
+            (Random.Range(_leftBorder.transform.position.x +_kickOutRange, _rightBorder.transform.position.x)
+             -_kickOutRange, _spawnLine.transform.position.y, 0);
         
         if (platform != null)
         {

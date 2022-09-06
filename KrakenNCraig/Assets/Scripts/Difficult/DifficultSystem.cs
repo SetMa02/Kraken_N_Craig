@@ -15,6 +15,7 @@ namespace DefaultNamespace
         public event UnityAction StepReached;
         
         public DifficultLevel CurreDifficultLevel => _currentDifficult;
+        
         private void Start()
         {
             _difficultLevels.Add(new DifficultLevel(100, 2));

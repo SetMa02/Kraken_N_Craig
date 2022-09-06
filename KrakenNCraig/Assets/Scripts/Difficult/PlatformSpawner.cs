@@ -11,6 +11,7 @@ namespace DefaultNamespace
         private DifficultSystem _difficultSystem;
         private PlatformPool _platformPool;
         private Random _random = new Random();
+        private int _fullChance = 10;
 
         private void OnEnable()
         {
@@ -30,13 +31,13 @@ namespace DefaultNamespace
 
         private void CreatePlatform()
         {
-            int i = _random.Next(0, 10);
+            int i = _random.Next(0, _fullChance);
             
-            if (_random.Next(0,10) <= _platformPool.SpecialPlatformChance)
+            if (_random.Next(0,_fullChance) <= _platformPool.SpecialPlatformChance)
             {
-                int j = _random.Next(0, 10);
+                int j = _random.Next(0, _fullChance);
                 
-                if (_random.Next(0,10) <= _platformPool.SpringPlatformChance)
+                if (_random.Next(0,_fullChance) <= _platformPool.SpringPlatformChance)
                 {
                     _platformPool.SpawnSpringPlatform();
                 }
