@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DefaultNamespace
 {
@@ -11,6 +12,7 @@ namespace DefaultNamespace
         private PlayerScore _playerScore;
         private DifficultLevel _currentDifficult;
         private float _currentStep = 0;
+        public event UnityAction StepReached;
         
         public DifficultLevel CurreDifficultLevel => _currentDifficult;
         private void Start()
@@ -37,7 +39,7 @@ namespace DefaultNamespace
             
             if (_playerScore.Score - _currentStep >= _currentDifficult.PlatformsStep)
             {
-                _playerScore.StepReached?.Invoke();
+                StepReached?.Invoke();
                 _currentStep = _playerScore.Score;
             }
         }

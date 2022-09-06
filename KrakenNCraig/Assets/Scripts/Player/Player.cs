@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
@@ -29,7 +29,18 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.TryGetComponent(out Platform platform) && _isJump == true)
         {
-            Jump(_jumpForce);
+            if (col.gameObject.TryGetComponent(out CrackPlatform crackPlatform) && _isJump == true)
+            {
+                Jump(0);
+            }
+            else if (col.gameObject.TryGetComponent(out SpringPlatform springPlatform) && _isJump == true )
+            {
+                Jump(_jumpForce + springPlatform.SpringPower);
+            }
+            else
+            {
+                Jump(_jumpForce);
+            }
         }
     }
 

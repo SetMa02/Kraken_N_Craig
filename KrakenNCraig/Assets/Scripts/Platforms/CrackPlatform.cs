@@ -12,7 +12,6 @@ public class CrackPlatform : Platform
       if (col.gameObject.TryGetComponent<Player>(out Player player))
       {
          StartCoroutine(Crack());
-         player.Jump(0);
       }
    }
 

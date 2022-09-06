@@ -6,11 +6,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PlatformsSpawner : MonoBehaviour
+public class PlatformPool : MonoBehaviour
 {
-    [SerializeField] private GameObject _platform;
-    [SerializeField] private GameObject _crackedPlatform;
-    [SerializeField] private GameObject _springPlatfrom;
+    [SerializeField] private Platform _platform;
+    [SerializeField] private Platform _crackedPlatform;
+    [SerializeField] private Platform _springPlatfrom;
     [SerializeField] private GameObject _spawnLine;
     [SerializeField] private GameObject _leftBorder;
     [SerializeField] private GameObject _rightBorder;
@@ -82,7 +82,7 @@ public class PlatformsSpawner : MonoBehaviour
             platform.gameObject.SetActive(true);
         }
     }
-
+    
     public void SpawnCrackPlatform()
     {
         foreach (var pl in _crackPlatforms)
@@ -116,11 +116,11 @@ public class PlatformsSpawner : MonoBehaviour
     {
         for (int i = 0; i < _platformPool; i++)
         {
-            FillPlatformList(_platform, _platforms);
+            FillPlatformList(_platform.gameObject, _platforms);
 
-            FillPlatformList(_springPlatfrom, _springPlatforms);
+            FillPlatformList(_springPlatfrom.gameObject, _springPlatforms);
             
-            FillPlatformList(_crackedPlatform, _crackPlatforms); 
+            FillPlatformList(_crackedPlatform.gameObject, _crackPlatforms); 
         }
     }
 
