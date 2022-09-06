@@ -531,14 +531,14 @@ GameObject:
   m_Component:
   - component: {fileID: 968178054}
   - component: {fileID: 968178059}
-  - component: {fileID: 968178058}
   - component: {fileID: 968178057}
   - component: {fileID: 968178056}
   - component: {fileID: 968178055}
+  - component: {fileID: 968178058}
   - component: {fileID: 968178062}
   - component: {fileID: 968178061}
   - component: {fileID: 968178060}
-  - component: {fileID: 968178063}
+  - component: {fileID: 968178064}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -731,9 +731,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab8243000aaef745a67be111829ed76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _platform: {fileID: 3690638210531031194, guid: 2029ded850a6521498b4749504a8cba6, type: 3}
-  _crackedPlatform: {fileID: 8871852143765442904, guid: 7c06a1ec95e25464cb7825cc6854d8e2, type: 3}
-  _springPlatfrom: {fileID: 8265215763129547497, guid: 567ee60365e42cc4e9bf4c005b008ab9, type: 3}
+  _platform: {fileID: 5104933022286059864, guid: 2029ded850a6521498b4749504a8cba6, type: 3}
+  _crackedPlatform: {fileID: 4252742313636833553, guid: 7c06a1ec95e25464cb7825cc6854d8e2, type: 3}
+  _springPlatfrom: {fileID: 5766388812338942179, guid: 567ee60365e42cc4e9bf4c005b008ab9, type: 3}
   _spawnLine: {fileID: 1438229226}
   _leftBorder: {fileID: 2093824035}
   _rightBorder: {fileID: 370095638}
@@ -741,102 +741,18 @@ MonoBehaviour:
   _platformPool: 15
   _specialPlatformChance: 3
   _springPlatformChance: 2
---- !u!82 &968178063
-AudioSource:
+--- !u!114 &968178064
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968178053}
   m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c415b9213fcb4926ba995de044b8fb54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1032178888
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,7 +869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.65029633, y: 0.90943754}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00012207031}
+  m_AnchoredPosition: {x: 0, y: -0.00024414062}
   m_SizeDelta: {x: -3.059967, y: -6.049988}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1294446239
